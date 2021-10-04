@@ -6,7 +6,7 @@
 // selectively enable features needed in the rendering
 // process.
 
-var fs = require("fs")
+var fs = require("fs");
 
 var db = {
   "globalSettings": {
