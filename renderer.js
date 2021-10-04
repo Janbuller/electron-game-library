@@ -42,5 +42,7 @@ function readFolderRecurs(path) {
     })
   })
 }
+var desc = document.getElementById("description-text");
+desc.innerText = db.games[0].description;
 
 readFolderRecurs("db")
