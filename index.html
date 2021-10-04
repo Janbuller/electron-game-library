@@ -19,16 +19,27 @@
             </ul> <!--gameslist-->
           </div> <!--games-->
         </div> <!--sidebar-->
-      
 
-      <div id="title-bg">
-          <h1 id="title-text">Hello World!</h1>
-      </div>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
+        <div id="title-bg">
+            <h1 id="title-text">Super Mario World</h1>
+        </div>
 
-    <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
+        <div id="main-content">
+            <img src="db/super_mario_world/thumb.png">
+            <div id="bottom-bar">
+                <div id="play-button" onclick="playClicked();">
+                    <p id="play-text">PLAY</p>
+                </div>
+                <div id="settings-button" onclick="settingsClicked();">
+                    <p id="settings-text">Settings</p>
+                </div>
+
+                <div id="description">
+                    <p id="description-text"></p>
+                </div>
+            </div>
+        </div>
+        <!-- You can also require other files to run in this process -->
+        <script src="./renderer.js"></script>
   </body>
 </html>
