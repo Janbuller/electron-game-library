@@ -1,0 +1,20 @@
+{
+  "name": "electron-todo-tut",
+  "version": "0.1.0",
+  "description": "Following a tutorial to make a simple todo app.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "tutorial",
+    "demo"
+  ],
+  "author": "LaZZe",
+  "license": "GPLv3",
+  "devDependencies": {
+    "electron": "^15.0.0"
+  }
+}
