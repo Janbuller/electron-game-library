@@ -1,3 +1,4 @@
 body {
     background-image: url("db/super_mario_world/bg.png");
+    backdrop-filter: blur(8px);
 }
