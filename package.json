@@ -15,6 +15,6 @@
   "author": "LaZZe",
   "license": "GPLv3",
   "devDependencies": {
-    "electron": "^15.0.0"
+    "electron": "^15.1.0"
   }
 }
