@@ -46,3 +46,13 @@ var desc = document.getElementById("description-text");
 desc.innerText = db.games[0].description;
 
 readFolderRecurs("db")
+
+function playClicked() {
+  console.log("play was clicked");
+}
+
+function settingsClicked() {
+  console.log("settings was clicked");
+}
+
+document.getElementById("play-button").addEventListener("click", function(){playClicked()})

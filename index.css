@@ -1,4 +1,73 @@
+@font-face { font-family: Rubik; src: url("fonts/Rubik.ttf"); }
+
 body {
+    margin: 0;
+    padding: 0;
     background-image: url("db/super_mario_world/bg.png");
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(32px);
+}
+
+.img-blur-trick {
+    position: absolute;
+    width: 1440px;
+    height: 1024px;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+}
+#bg-img {
+    position: absolute;
+    width: 1440px;
+    height: 1024px;
+    top: 0px;
+    left: 0px;
+    filter: blur(64px);
+    transform: scale(1.2);
+}
+
+#title-bg {
+    position: absolute;
+    width: 1106px;
+    height: 129px;
+    left: 334px;
+    top: 0px;
+
+    background-color: #00000033;
+    /*opacity: 0.2;*/
+}
+
+#title-text {
+    position: absolute;
+    margin: 0;
+    width: 100%;
+
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 96px;
+
+    text-align: center;
+    vertical-align: middle;
+    line-height: 129px;
+
+    color: #FFFFFF;
+}
+
+#sidebar {
+    position: absolute;
+    width: 334px;
+    height: 1024px;
+    left: 0px;
+    top: 0px;
+
+    background-color: #00000033;
+}
+
+#main-content {
+    position: absolute;
+
+    width: 1106px;
+    height: 895px;
+    left: 334px;
+    top: 129px;
 }
