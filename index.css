@@ -228,6 +228,8 @@ body {
     background: #00000040;
 
     border-radius: 25px;;
+
+    overflow-y: scroll;
 }
 
 #description-text {
