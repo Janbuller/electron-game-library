@@ -61,3 +61,4 @@ function settingsClicked() {
 }
 
 document.getElementById("play-button").addEventListener("click", function(){playClicked()})
+document.getElementById("settings-button").addEventListener("click", function(){settingsClicked()})
