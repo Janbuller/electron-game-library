@@ -164,7 +164,12 @@ body {
     box-sizing: border-box;
     background-color: #ffffffc2;
 }
-
+#play-button:hover{
+    filter: brightness(0.8);
+}
+#play-button:active{
+    filter: brightness(2);
+}
 #play-button {
     position: absolute;
 
@@ -173,6 +178,8 @@ body {
     left: 20px;
     top: 20px;
     background: url("res/img/play_gradient.png");
+
+
 
     border-radius: 5px;
 }
