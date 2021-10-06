@@ -49,7 +49,7 @@ desc.innerText = db.games[0].description;
 readFolderRecurs("db")
 
 function playClicked() {
-  exec("D:\\Blender2\.9\\blender\.exe", function(err, data) {
+  exec("D:\\Blender 2\.9\\blender\.exe", function(err, data) {
     console.log(err)
     console.log(data.toString())
   })
