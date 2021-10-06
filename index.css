@@ -5,8 +5,6 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url("db/super_mario_world/bg.png");
-    backdrop-filter: blur(32px);
 }
 
 .img-blur-trick {
@@ -53,6 +51,8 @@ body {
     line-height: 129px;
 
     color: #FFFFFF;
+
+    user-select: none;
 }
 
 #sidebar {
@@ -80,6 +80,8 @@ body {
     left: 25px;
     width: 1056px;
     height: 514px;
+
+    user-select: none;
 }
 
 #thumb-img {
@@ -108,8 +110,6 @@ body {
     height: 129px;
     left: 0px;
     top: 0px;
-
-    background-color: #0000000d;
 }
 
 #games {
@@ -143,6 +143,8 @@ body {
     align-items: center;
     overflow: hidden;
     margin-bottom: -5px;
+
+    user-select: none;
 }
 
 #searchbar {
@@ -187,6 +189,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    user-select: none;
 }
 
 
@@ -203,6 +207,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    user-select: none;
 }
 
 
