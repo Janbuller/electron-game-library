@@ -66,4 +66,4 @@ function closeClicked(){
 
 document.getElementById("play-button").addEventListener("click", function(){playClicked()})
 document.getElementById("settings-button").addEventListener("click", function(){settingsClicked()})
-document.getElementById("close-button").addEventListener("click", function(){XClicked()})
+document.getElementById("close-button").addEventListener("click", function(){closeClicked()})
