@@ -59,6 +59,11 @@ function playClicked() {
 function settingsClicked() {
   console.log("settings was clicked");
 }
+function closeClicked(){
+  console.log("close was clicked");
+  process.kill(process.pid);
+}
 
 document.getElementById("play-button").addEventListener("click", function(){playClicked()})
 document.getElementById("settings-button").addEventListener("click", function(){settingsClicked()})
+document.getElementById("close-button").addEventListener("click", function(){XClicked()})
