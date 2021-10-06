@@ -7,6 +7,7 @@
 // process.
 
 var fs = require("fs");//hallo
+var exec = require("child_process").execFile
 
 var db = {
   "globalSettings": {
@@ -48,6 +49,10 @@ desc.innerText = db.games[0].description;
 readFolderRecurs("db")
 
 function playClicked() {
+  exec("D:\\Blender2\.9\\blender\.exe", function(err, data) {
+    console.log(err)
+    console.log(data.toString())
+  })
   console.log("play was clicked");
 }
 
