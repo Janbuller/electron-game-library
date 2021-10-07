@@ -8,7 +8,7 @@
 
 var fs = require("fs");//hallo
 var exec = require("child_process").execFile
-
+const open = require('open');
 var db = {
   "globalSettings": {
     "blurAmount": 80
@@ -49,10 +49,11 @@ desc.innerText = db.games[0].description;
 readFolderRecurs("db")
 
 function playClicked() {
-  exec("D:\\Blender 2\.9\\blender\.exe", function(err, data) {
+  /*exec('"C:\\Windows\\explorer.exe" steam://rungameid/488860', function(err, data) {
     console.log(err)
     console.log(data.toString())
-  })
+  })*/
+  open('steam://rungameid/488860');
   console.log("play was clicked");
 }
 
