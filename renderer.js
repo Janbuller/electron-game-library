@@ -49,11 +49,11 @@ desc.innerText = db.games[0].description;
 readFolderRecurs("db")
 
 function playClicked() {
-  /*exec('"C:\\Windows\\explorer.exe" steam://rungameid/488860', function(err, data) {
+  /*exec("steam steam://rungameid/488860", function(err, data) {
     console.log(err)
     console.log(data.toString())
   })*/
-  open('steam://rungameid/488860');
+  open('steam://rungameid/11703200');
   console.log("play was clicked");
 }
 
