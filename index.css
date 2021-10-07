@@ -169,7 +169,7 @@ body {
     cursor: pointer;
 }
 #play-button:active{
-    filter: brightness(2);
+    filter: brightness(1.3);
 }
 #play-button {
     position: absolute;
@@ -183,6 +183,25 @@ body {
 
 
     border-radius: 5px;
+}
+#close-button {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    top: 32px;
+    right: 32px;
+    border-radius: 15px;
+    background: url("res/img/close_default.png");
+}
+#close-button:hover{
+
+    background: url("res/img/close_hover.png");
+    filter: brightness(0.8);
+}
+#close-button:active{
+
+    background: url("res/img/close_hover.png");
+    filter: brightness(1.3);
 }
 
 #play-text {
