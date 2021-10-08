@@ -9,6 +9,8 @@
 var fs = require("fs");//hallo
 var exec = require("child_process").execFile
 const open = require('open');
+const {ipcRenderer} = require('electron');
+
 var db = {
   "globalSettings": {
     "blurAmount": 80
@@ -62,7 +64,7 @@ function settingsClicked() {
 }
 function closeClicked(){
   console.log("close was clicked");
-  process.kill(process.pid);
+  ipcRenderer.send('close-clicked')
 }
 
 document.getElementById("play-button").addEventListener("click", function(){playClicked()})
