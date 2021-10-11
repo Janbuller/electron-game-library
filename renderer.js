@@ -53,7 +53,6 @@ function setupGamesList(inputDB) {
   var list = document.createElement("ul");
   list.setAttribute("id", "games-list")
   db.games.forEach(function(game, i) {
-    console.log(game.name);
     var listItem = document.createElement("li");
     listItem.setAttribute("class", "game")
     listItem.innerText = game.name
@@ -62,7 +61,6 @@ function setupGamesList(inputDB) {
   })
   document.getElementById("games-list").replaceWith(list);
 }
-setTimeout(function() {setupGamesList(db)}, 1000);
 
 function refreshAll() {
   const game = db.games[curSelGame]
@@ -104,3 +102,5 @@ function closeClicked(){
 document.getElementById("play-button").addEventListener("click", function(){playClicked()})
 document.getElementById("settings-button").addEventListener("click", function(){settingsClicked()})
 document.getElementById("close-button").addEventListener("click", function(){closeClicked()})
+
+setTimeout(function() {refreshAll()}, 50);
