@@ -98,6 +98,50 @@ body {
     background-color: #0000003E;
     border-radius: 5px;
 }
+#settings-area-headers {
+    color: #ffffff;
+    border-radius: 5px;
+    text-emphasis-color: #ffffff3e;
+    font-family: OpenSans;
+    border: none; 
+    outline: none;
+}
+#NameInput{
+    top: 25px;
+    left: 25px;
+    height: 30px;
+    width: 100px;
+    background-color: #0000003E;
+    color: #ffffff;
+    border-radius: 5px;
+    font-family: OpenSans;
+    border: none; 
+    outline: none;
+}
+#ImageInput{
+    top: 50px;
+    left: 50px;
+    height: 30px;
+    width: 100px;
+    background-color: #0000003E;
+    color: #ffffff;
+    border-radius: 5px;
+    font-family: OpenSans;
+    border: none; 
+    outline: none;
+}
+#BgImageInput{
+    top: 50px;
+    left: 50px;
+    height: 30px;
+    width: 100px;
+    background-color: #0000003E;
+    color: #ffffff;
+    border-radius: 5px;
+    font-family: OpenSans;
+    border: none; 
+    outline: none;
+}
 
 #bottom-bar {
     position: absolute;
