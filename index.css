@@ -74,14 +74,12 @@ body {
     top: 129px;
 }
 
-#thumb-img-holder {
+#main-square {
     position: absolute;
     top: 25px;
     left: 25px;
     width: 1056px;
     height: 514px;
-
-    user-select: none;
 }
 
 #thumb-img {
@@ -90,6 +88,15 @@ body {
     margin: auto;
     max-height: 100%;
     max-width: 100%;
+
+    user-select: none;
+}
+
+#settings-area {
+    width: 100%;
+    height: 100%;
+    background-color: #0000003E;
+    border-radius: 5px;
 }
 
 #bottom-bar {
