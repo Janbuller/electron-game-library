@@ -6,57 +6,91 @@
 // selectively enable features needed in the rendering
 // process.
 
-var fs = require("fs");//hallo
-var exec = require("child_process").execFile
+const fs = require("fs");//hallo
+const exec = require("child_process").execFile
 const open = require('open');
 const {ipcRenderer} = require('electron');
+const ini = require('ini')
+
+let curSelGame = 0;
 
 var db = {
   "globalSettings": {
     "blurAmount": 80
   },
   "games": [
-    {
-      "name": "Super Mario World",
-      "dirName": "super_mario_world",
-      "steam": false,
-      "IdOrExe": "C:\\Program Files\\SNES\\emu.exe C:\\roms\\smw.sfc",
-      "blur": false,
-      "description": "Super Mario World is a 1990 platform game developed by Nintendo for the Super Nintendo Entertainment System (SNES). The story follows Mario's quest to save Princess Toadstool and Dinosaur Land from the series' antagonist Bowser and his minions, the Koopalings. The gameplay is similar to that of earlier Super Mario games: players control Mario or his brother Luigi through a series of levels in which the goal is to reach the goalpost at the end. Super Mario World introduced Yoshi, a dinosaur who can eat enemies, as well as gain abilities by eating the shells of Koopa Troopas. Super Mario World is a 1990 platform game developed by Nintendo for the Super Nintendo Entertainment System (SNES). The story follows Mario's quest to save Princess Toadstool and Dinosaur Land from the series' antagonist Bowser and his minions, the Koopalings. The gameplay is similar to that of earlier Super Mario games: players control Mario or his brother Luigi through a series of levels in which the goal is to reach the goalpost at the end. Super Mario World introduced Yoshi, a dinosaur who can eat enemies, as well as gain abilities by eating the shells of Koopa Troopas.",
-      "images": {
-        "bg": "db/super_mario_world/bg.png",
-        "thumb": "db/super_mario_world/thumb.png"
-      }
-    }
   ]
 }
 
-function readFolderRecurs(path) {
+function loadDB(path) {
   path += "/"
   fs.readdir(path, function(err, files) {
     if(err) {
       return console.error(err);
     }
+
     files.forEach(function(file) {
-      console.log(path+file);
       if(fs.lstatSync(path+file).isDirectory()) {
-        readFolderRecurs(path+file);
+        var info = ini.parse(fs.readFileSync(path+file+"/info.ini", 'utf-8'))
+        let game = {}
+        game.dirName = file;
+        game.name = info.GameInfo.Name
+        game.steam = info.GameInfo.Steam
+        game.IdOrExe = info.GameInfo.IdOrExe
+        game.blur = info.GameInfo.BlurBack
+        game.description = fs.readFileSync(path+file+"/desc.txt", 'utf-8')
+        game.images = {}
+        game.images.bg = path+file+"/bg.png"
+        game.images.thumb = path+file+"/thumb.png"
+        db.games.push(game)
       }
     })
   })
 }
-var desc = document.getElementById("description-text");
-desc.innerText = db.games[0].description;
+loadDB("db")
 
-readFolderRecurs("db")
+function setupGamesList(inputDB) {
+  var list = document.createElement("ul");
+  list.setAttribute("id", "games-list")
+  db.games.forEach(function(game, i) {
+    console.log(game.name);
+    var listItem = document.createElement("li");
+    listItem.setAttribute("class", "game")
+    listItem.innerText = game.name
+    listItem.addEventListener("click", function(){gameClicked(i)}, false)
+    list.appendChild(listItem)
+  })
+  document.getElementById("games-list").replaceWith(list);
+}
+setTimeout(function() {setupGamesList(db)}, 1000);
+
+function refreshAll() {
+  const game = db.games[curSelGame]
+  setupGamesList(db)
+  document.getElementById("thumb-img").setAttribute("src", game.images.thumb)
+  document.getElementById("bg-img").setAttribute("src", game.images.bg)
+  document.getElementById("title-text").innerText = game.name
+  document.getElementById("description-text").innerText = game.description
+}
+
+function gameClicked(index) {
+  curSelGame = index;
+  refreshAll()
+}
+
+//var desc = document.getElementById("description-text");
+//desc.innerText = db.games[0].description;
 
 function playClicked() {
-  /*exec("steam steam://rungameid/488860", function(err, data) {
-    console.log(err)
-    console.log(data.toString())
-  })*/
-  open('steam://rungameid/11703200');
-  console.log("play was clicked");
+  const game = db.games[curSelGame]
+  if(game.steam) {
+    open('steam://rungameid/' + game.IdOrExe);
+  } else {
+    exec(game.IdOrExe, function(err, data) {
+      console.log(err)
+      console.log(data.toString())
+    })
+  }
 }
 
 function settingsClicked() {
