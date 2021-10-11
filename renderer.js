@@ -56,6 +56,9 @@ function setupGamesList(inputDB) {
     var listItem = document.createElement("li");
     listItem.setAttribute("class", "game")
     listItem.innerText = game.name
+    if(i == curSelGame) {
+      listItem.setAttribute("id", "selected")
+    }
     listItem.addEventListener("click", function(){gameClicked(i)}, false)
     list.appendChild(listItem)
   })
