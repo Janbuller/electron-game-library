@@ -146,6 +146,18 @@ body {
 
     user-select: none;
 }
+.game:hover{
+    cursor: pointer;
+    filter:brightness(1.1)
+}
+.game:active{
+    cursor: pointer;
+    filter:brightness(1.2)
+    
+}
+#selected{
+    filter: brightness(1.1);
+}
 
 #searchbar {
     position: absolute;
