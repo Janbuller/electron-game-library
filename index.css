@@ -170,6 +170,7 @@ body {
 }
 #play-button:active{
     filter: brightness(1.3);
+    cursor: pointer;
 }
 #play-button {
     position: absolute;
@@ -197,11 +198,13 @@ body {
 
     background: url("res/img/close_hover.png");
     filter: brightness(0.8);
+    cursor: pointer;
 }
 #close-button:active{
 
     background: url("res/img/close_hover.png");
     filter: brightness(1.3);
+    cursor: pointer;
 }
 
 #play-text {
@@ -250,6 +253,14 @@ body {
     background: url("res/img/settings_gradient.png");
 
     border-radius: 5px;
+}
+#settings-button :hover{
+    filter: brightness(0,8);
+    cursor: pointer;
+}
+#settings-button :active{
+    filter: brightness(1.3);
+    cursor: pointer
 }
 
 #description {
