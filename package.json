@@ -1,24 +1,59 @@
 {
-  "name": "electron-todo-tut",
+  "name": "Game Launcher",
   "version": "0.1.0",
-  "description": "Following a tutorial to make a simple todo app.",
+  "description": "A simple electron game launcher",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/Janbuller/electron-game-library.git",
   "keywords": [
     "Electron",
-    "tutorial",
-    "demo"
+    "Game",
+    "Launcher"
   ],
   "author": "LaZZe",
   "license": "GPLv3",
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.61",
+    "@electron-forge/maker-deb": "^6.0.0-beta.61",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.61",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
+    "@electron-forge/maker-zip": "^6.0.0-beta.61",
     "electron": "^15.1.1"
   },
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
     "ini": "^1.3.8",
     "open": "^8.3.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron_game_launcher"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   }
 }
