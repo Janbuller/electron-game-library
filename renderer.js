@@ -95,7 +95,19 @@ function playClicked() {
 }
 
 function settingsClicked() {
-  console.log("settings was clicked");
+  var imgHold = document.getElementById("thumb-img-holder");
+  var setArea = document.getElementById("settings-area");
+  var setButTex = document.getElementById("settings-text");
+
+  if(imgHold.hidden) {
+    imgHold.hidden = false;
+    setArea.hidden = true;
+    setButTex.innerText = "Settings"
+  } else {
+    imgHold.hidden = true;
+    setArea.hidden = false;
+    setButTex.innerText = "Apply"
+  }
 }
 function closeClicked(){
   console.log("close was clicked");
