@@ -113,14 +113,29 @@ body {
 }
 .settings-area-headers {
     color: #ffffff;
-    border-radius: 5px;
-    text-emphasis-color: #ffffff3e;
     font-family: OpenSans;
-    border: none; 
-    outline: none;
     margin: 0;
 }
-#NameInput{
+
+.settings-area-small-headers {
+    color: #d9d9d9;
+    font-size: 10px;
+    margin: 0;
+    margin-bottom: 5px;
+    font-family: OpenSans;
+}
+
+input[type="file"] {
+    color: white;
+}
+
+#steam-checkbox {
+    width: 32px;
+    height: 32px;
+}
+
+/*
+#name-input{
     top: 25px;
     left: 25px;
     height: 30px;
@@ -132,7 +147,7 @@ body {
     border: none; 
     outline: none;
 }
-#ImageInput{
+#image-input{
     top: 50px;
     left: 50px;
     height: 30px;
@@ -144,7 +159,7 @@ body {
     border: none; 
     outline: none;
 }
-#BgImageInput{
+#bg-img-input{
     top: 50px;
     left: 50px;
     height: 30px;
@@ -156,6 +171,7 @@ body {
     border: none; 
     outline: none;
 }
+ */
 
 #bottom-bar {
     position: absolute;
@@ -239,7 +255,7 @@ body {
 
     padding: 10px;
     box-sizing: border-box;
-    background-color: #ffffffc2;
+    background-color: #ffffff;
 }
 #play-button:hover{
     filter: brightness(0.8);

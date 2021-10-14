@@ -32,19 +32,29 @@
 
         <div id="main-content">
             <div id="main-square">
-                <div id="thumb-img-holder" hidden>
+                <div id="thumb-img-holder">
                     <img id="thumb-img" src="db/super_mario_world/thumb.png">
                 </div>
-                <div id="settings-area">
+                <div id="settings-area" hidden>
                     <form>
                         <h1 class="settings-area-headers">Name</h1>
-                        <input id="NameInput" type="text">
-                        <h1 class="settings-area-headers">Preview Image</h1>
-                        <input id="ImageInput" type="file">
-                        <h1 class="settings-area-headers">Background Image</h1>
-                        <input id="BgImageInput" type="file">
+                        <input id="name-input" type="text">
+                        <h1 class="settings-area-headers">Is it a Steam game?</h1>
+                        <input id="steam-checkbox" type="checkbox">
+                        <h1 class="settings-area-headers" id="exe-text">Where is the game?</h1>
+                        <input id="exe-input" type="text">
+                        <div id="thumb-img-settings-box">
+                            <h1 class="settings-area-headers">Preview Image</h1>
+                            <p class="settings-area-small-headers">(Leave blank for no change)</p>
+                            <input id="image-input" type="file">
+                        </div>
+                        <div id="bg-img-settings-box">
+                            <h1 class="settings-area-headers">Background Image</h1>
+                            <p class="settings-area-small-headers">(Leave blank for no change)</p>
+                            <input id="bg-img-input" type="file">
+                        </div>
                         <h1 class="settings-area-headers">Description</h1>
-                        <textarea id="DescriptionInput" rows="5" cols="40"></textarea>
+                        <textarea id="description-input" rows="5" cols="40"></textarea>
                     </form>
                 </div>
             </div>

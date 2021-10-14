@@ -75,6 +75,7 @@ function refreshAll() {
 }
 
 function gameClicked(index) {
+  settingsClicked(true);
   curSelGame = index;
   refreshAll()
 }
@@ -94,28 +95,93 @@ function playClicked() {
   }
 }
 
-function settingsClicked() {
+function settingsClicked(justClose) {
   var imgHold = document.getElementById("thumb-img-holder");
   var setArea = document.getElementById("settings-area");
   var setButTex = document.getElementById("settings-text");
+
+  if(justClose) {
+    imgHold.hidden = false;
+    setArea.hidden = true;
+    setButTex.innerText = "Settings"
+    return;
+  }
 
   if(imgHold.hidden) {
     imgHold.hidden = false;
     setArea.hidden = true;
     setButTex.innerText = "Settings"
+    saveSettingsFromMenu();
   } else {
     imgHold.hidden = true;
     setArea.hidden = false;
     setButTex.innerText = "Apply"
+    loadSettingsForMenu()
   }
 }
+
+function loadSettingsForMenu() {
+  var game = db.games[curSelGame]
+
+  var InName = document.getElementById("name-input")
+  var InSteam = document.getElementById("steam-checkbox")
+  var TextExe = document.getElementById("exe-text")
+  var InExe = document.getElementById("exe-input")
+  var InImg = document.getElementById("image-input")
+  var InBgImg = document.getElementById("bg-img-input")
+  var InDesc = document.getElementById("description-input")
+
+  InName.value = game.name
+  InSteam.checked = game.steam;
+  if(game.steam) {
+    TextExe.innerText = "What is the Steam-ID"
+  } else {
+    TextExe.innerText = "Where is the game?"
+  }
+  InExe.value = game.IdOrExe;
+  InDesc.value = game.description
+}
+
+function saveSettingsFromMenu() {
+  var game = db.games[curSelGame]
+  var InName = document.getElementById("name-input")
+  var InSteam = document.getElementById("steam-checkbox")
+  var TextExe = document.getElementById("exe-text")
+  var InExe = document.getElementById("exe-input")
+  var InImg = document.getElementById("image-input")
+  var InBgImg = document.getElementById("bg-img-input")
+  var InDesc = document.getElementById("description-input")
+
+  var gameini = ini.parse(fs.readFileSync("db/"+game.dirName+"/info.ini", 'utf-8'))
+  gameini.GameInfo.Name = InName.value;
+  gameini.GameInfo.Steam = InSteam.checked;
+  gameini.GameInfo.IdOrExe = InExe.value;
+  fs.writeFileSync("db/"+game.dirName+"/info.ini", ini.stringify(gameini))
+  fs.writeFileSync("db/"+game.dirName+"/desc.txt", InDesc.value)
+
+  console.log(InImg.value)
+
+  db.games = []
+  loadDB("db")
+  setTimeout(function() {refreshAll()}, 50);
+}
+
 function closeClicked(){
   console.log("close was clicked");
   ipcRenderer.send('close-clicked')
 }
 
 document.getElementById("play-button").addEventListener("click", function(){playClicked()})
-document.getElementById("settings-button").addEventListener("click", function(){settingsClicked()})
+document.getElementById("settings-button").addEventListener("click", function(){settingsClicked(false)})
 document.getElementById("close-button").addEventListener("click", function(){closeClicked()})
+
+document.getElementById("steam-checkbox").addEventListener("change", function() {
+  var TextExe = document.getElementById("exe-text")
+  if(this.checked) {
+    TextExe.innerText = "What is the Steam-ID"
+  } else {
+    TextExe.innerText = "Where is the game?"
+  }
+})
 
 setTimeout(function() {refreshAll()}, 50);
