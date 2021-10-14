@@ -64,6 +64,19 @@ body {
 
     background-color: #00000033;
 }
+#Add-Button {
+    position: absolute;
+    left: 39px;
+    top: 950px;
+}
+#Add-Button :hover {
+    filter: brightness(0.8);
+    cursor: pointer;
+}
+#Add-Button :active {
+    filter: brightness(1.2);
+    cursor: pointer;
+}
 
 #main-content {
     position: absolute;
