@@ -68,8 +68,8 @@ function setupGamesList(inputDB) {
 function refreshAll() {
   const game = db.games[curSelGame]
   setupGamesList(db)
-  document.getElementById("thumb-img").setAttribute("src", game.images.thumb)
-  document.getElementById("bg-img").setAttribute("src", game.images.bg)
+  document.getElementById("thumb-img").setAttribute("src", game.images.thumb + "?random="+new Date().getTime())
+  document.getElementById("bg-img").setAttribute("src", game.images.bg + "?random="+new Date().getTime())
   document.getElementById("title-text").innerText = game.name
   document.getElementById("description-text").innerText = game.description
 }
@@ -127,14 +127,12 @@ function loadSettingsForMenu() {
   var InSteam = document.getElementById("steam-checkbox")
   var TextExe = document.getElementById("exe-text")
   var InExe = document.getElementById("exe-input")
-  var InImg = document.getElementById("image-input")
-  var InBgImg = document.getElementById("bg-img-input")
   var InDesc = document.getElementById("description-input")
 
   InName.value = game.name
   InSteam.checked = game.steam;
   if(game.steam) {
-    TextExe.innerText = "What is the Steam-ID"
+    TextExe.innerText = "What is the Steam-ID?"
   } else {
     TextExe.innerText = "Where is the game?"
   }
@@ -159,7 +157,20 @@ function saveSettingsFromMenu() {
   fs.writeFileSync("db/"+game.dirName+"/info.ini", ini.stringify(gameini))
   fs.writeFileSync("db/"+game.dirName+"/desc.txt", InDesc.value)
 
-  console.log(InImg.value)
+  try {
+    var InImgFilePath = InImg.files[0].path
+    var InImgFile = fs.readFileSync(InImgFilePath, null)
+    fs.writeFileSync("db/"+game.dirName+"/thumb.png", InImgFile)
+  } catch(err) {
+
+  }
+  try {
+    var InBgFilePath = InBgImg.files[0].path
+    var InBgFile = fs.readFileSync(InBgFilePath, null)
+    fs.writeFileSync("db/"+game.dirName+"/bg.png", InBgFile)
+  } catch(err) {
+
+  }
 
   db.games = []
   loadDB("db")
