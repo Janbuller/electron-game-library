@@ -6,11 +6,15 @@
 // selectively enable features needed in the rendering
 // process.
 
-const fs = require("fs");//hallo
+const fs = require("fs-extra");//hallo
 const exec = require("child_process").execFile
 const open = require('open');
 const {ipcRenderer} = require('electron');
 const ini = require('ini')
+const {
+  v1: uuidv1,
+  v4: uuidv4,
+} = require('uuid');
 
 let curSelGame = 0;
 
@@ -22,7 +26,10 @@ var db = {
   ]
 }
 
+var searchQ = "";
+
 function loadDB(path) {
+  db.games = []
   path += "/"
   fs.readdir(path, function(err, files) {
     if(err) {
@@ -53,14 +60,17 @@ function setupGamesList(inputDB) {
   var list = document.createElement("ul");
   list.setAttribute("id", "games-list")
   db.games.forEach(function(game, i) {
-    var listItem = document.createElement("li");
-    listItem.setAttribute("class", "game")
-    listItem.innerText = game.name
-    if(i == curSelGame) {
-      listItem.setAttribute("id", "selected")
+    if (searchQ == "" || game.name.toLowerCase().includes(searchQ)) {
+      var listItem = document.createElement("li");
+      listItem.setAttribute("class", "game")
+      listItem.setAttribute("id", "gamenr"+i)
+      listItem.innerText = game.name
+      if(i == curSelGame) {
+        listItem.setAttribute("id", "selected")
+      }
+      listItem.addEventListener("click", function(){gameClicked(i)}, false)
+      list.appendChild(listItem)
     }
-    listItem.addEventListener("click", function(){gameClicked(i)}, false)
-    list.appendChild(listItem)
   })
   document.getElementById("games-list").replaceWith(list);
 }
@@ -182,9 +192,23 @@ function closeClicked(){
   ipcRenderer.send('close-clicked')
 }
 
+function addClicked() {
+  var dirName = uuidv4();
+  fs.copy("res/example_game/", "db/"+dirName+"/", function(err) {
+    if(err) {
+      console.log("ERR::COPY_DIR::FS-EXTRA")
+      return console.error(err)
+    }
+  })
+
+  setTimeout(function() {loadDB("db")}, 25);
+  setTimeout(function() {refreshAll()}, 50);
+}
+
 document.getElementById("play-button").addEventListener("click", function(){playClicked()})
 document.getElementById("settings-button").addEventListener("click", function(){settingsClicked(false)})
 document.getElementById("close-button").addEventListener("click", function(){closeClicked()})
+document.getElementById("add-button").addEventListener("click", function(){addClicked()})
 
 document.getElementById("steam-checkbox").addEventListener("change", function() {
   var TextExe = document.getElementById("exe-text")
@@ -193,6 +217,14 @@ document.getElementById("steam-checkbox").addEventListener("change", function() 
   } else {
     TextExe.innerText = "Where is the game?"
   }
+})
+
+
+const sBar = document.getElementById("searchbar");
+sBar.addEventListener("input", function() {
+  searchQ = sBar.value;
+  var games = db.games.filter(obj=>obj.name.toLowerCase().includes(sBar.value.toLowerCase()))
+  refreshAll();
 })
 
 setTimeout(function() {refreshAll()}, 50);
